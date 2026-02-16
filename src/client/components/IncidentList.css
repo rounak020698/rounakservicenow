@@ -1,0 +1,346 @@
+/* ServiceNow UI Builder Style - Enhanced Incident List */
+.incident-list-container {
+  max-width: 1400px;
+  padding: 32px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e9ecef;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.list-header h2 {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+}
+
+.list-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.stat-badge {
+  background-color: #0073e7;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(0, 115, 231, 0.2);
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.filter-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #f8f9fa;
+  padding: 16px 20px;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  flex-wrap: wrap;
+}
+
+.filter-controls label {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 14px;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+
+.filter-controls select {
+  padding: 8px 16px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+  font-size: 14px;
+  min-width: 160px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 40px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.filter-controls select:focus {
+  outline: none;
+  border-color: #0073e7;
+  box-shadow: 0 0 0 3px rgba(0, 115, 231, 0.1);
+}
+
+.list-view-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.refresh-btn {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+}
+
+.refresh-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.refresh-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.view-toggle {
+  display: flex;
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.view-toggle button {
+  padding: 8px 16px;
+  border: none;
+  background-color: transparent;
+  color: #6c757d;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.view-toggle button.active {
+  background-color: #0073e7;
+  color: white;
+}
+
+.loading {
+  text-align: center;
+  padding: 80px 20px;
+  color: #6c757d;
+  font-size: 16px;
+}
+
+.loading::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e9ecef;
+  border-top-color: #0073e7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #6c757d;
+  font-size: 16px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  border: 2px dashed #ced4da;
+}
+
+.empty-state::before {
+  content: '📋';
+  display: block;
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+/* Table View Styles */
+.incident-table-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.incident-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.incident-table thead {
+  background: linear-gradient(135deg, #0073e7 0%, #004c9b 100%);
+  color: white;
+}
+
+.incident-table th {
+  padding: 16px 12px;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.incident-table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid #e9ecef;
+  vertical-align: middle;
+}
+
+.incident-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.incident-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-incident-number {
+  font-weight: 700;
+  color: #0073e7;
+  cursor: pointer;
+}
+
+.table-incident-number:hover {
+  text-decoration: underline;
+}
+
+.table-description {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-state,
+.table-priority {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.table-assigned-to,
+.table-last-updated {
+  color: #495057;
+  font-size: 13px;
+}
+
+.table-last-updated {
+  white-space: nowrap;
+}
+
+.table-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.view-incident-btn {
+  background-color: #0073e7;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.view-incident-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.magnifying-glass-icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* Card View Styles */
+.incident-list {
+  display: grid;
+  gap: 16px;
+}
+
+/* Grid layout for larger screens */
+@media (min-width: 1024px) {
+  .incident-list {
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .list-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .list-view-controls {
+    justify-content: space-between;
+  }
+  
+  .filter-controls select {
+    min-width: auto;
+  }
+  
+  .incident-table-container {
+    overflow-x: auto;
+  }
+  
+  .incident-table {
+    min-width: 800px;
+  }
+}
