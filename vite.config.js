@@ -18,21 +18,27 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
-  const devUrl = env.VITE_DEV_URL;
-  const snCookie = env.VITE_SPOOF_COOKIE;
-  const snToken = env.VITE_SPOOF_TOKEN;
+  const devUrl = env.VITE_SN_INSTANCE_URL;
+  const snCookie = env.VITE_SN_COOKIE;
+  const snToken = env.VITE_SN_TOKEN;
   console.log('Vite Config - Dev URL:', devUrl);
 
   const injectCookie = (proxy) => {
     // For HTTP(S) requests
     proxy.on('proxyReq', (proxyReq) => {
+      proxyReq.removeHeader('authorization');
       if (snCookie) proxyReq.setHeader('Cookie', snCookie);
-      if (snToken) proxyReq.setHeader('X-User-Token', snToken);
+      if (snToken) proxyReq.setHeader('X-UserToken', snToken);
     });
     // For WebSocket upgrade handshake
     proxy.on('proxyReqWs', (proxyReq) => {
+      proxyReq.removeHeader('authorization');
       if (snCookie) proxyReq.setHeader('Cookie', snCookie);
-       if (snToken) proxyReq.setHeader('X-User-Token', snToken);
+      if (snToken) proxyReq.setHeader('X-UserToken', snToken);
+    });
+    // Remove WWW-Authenticate header from response
+    proxy.on('proxyRes', (proxyRes) => {
+      delete proxyRes.headers['www-authenticate'];
     });
   };
 
