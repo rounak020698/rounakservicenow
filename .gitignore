@@ -5,3 +5,7 @@ node_modules/
 target/
 *.tsbuildinfo
 .jest_cache
+.env
+.env.local
+.vite-dist/
+package-lock.json

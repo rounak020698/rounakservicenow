@@ -20,10 +20,12 @@ declare global {
                     'x_1835748_incident/main': {
                         table: 'sys_ux_lib_asset'
                         id: '58cd079b2a9442a3a2dc806eeab48d9c'
+                        deleted: false
                     }
                     'x_1835748_incident/main.js.map': {
                         table: 'sys_ux_lib_asset'
                         id: 'bf0a0774ccab49c282291a43a25eecde'
+                        deleted: false
                     }
                 }
             }

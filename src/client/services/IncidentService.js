@@ -1,6 +1,7 @@
 export class IncidentService {
   constructor() {
     this.tableName = "incident";
+    this.isDev = import.meta.env.DEV;
   }
 
   // Get all incidents with display values and expanded field set
@@ -12,12 +13,17 @@ export class IncidentService {
       searchParams.set('sysparm_fields', 'sys_id,number,short_description,description,incident_state,priority,impact,urgency,assigned_to,caller_id,assignment_group,sys_created_on,sys_updated_on,opened_by,category,subcategory');
       searchParams.set('sysparm_order', 'ORDERBYDESCsys_updated_on');
       
+      const headers = {
+        "Accept": "application/json"
+      };
+      
+      if (!this.isDev && window.g_ck) {
+        headers["X-UserToken"] = window.g_ck;
+      }
+      
       const response = await fetch(`/api/now/table/${this.tableName}?${searchParams.toString()}`, {
         method: "GET",
-        headers: {
-          "Accept": "application/json",
-          "X-UserToken": window.g_ck
-        },
+        headers
       });
 
       if (!response.ok) {
@@ -36,13 +42,18 @@ export class IncidentService {
   // Create a new incident
   async create(data) {
     try {
+      const headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      };
+      
+      if (!this.isDev && window.g_ck) {
+        headers["X-UserToken"] = window.g_ck;
+      }
+      
       const response = await fetch(`/api/now/table/${this.tableName}`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "X-UserToken": window.g_ck
-        },
+        headers,
         body: JSON.stringify(data),
       });
 
@@ -61,13 +72,18 @@ export class IncidentService {
   // Update an existing incident
   async update(sysId, data) {
     try {
+      const headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      };
+      
+      if (!this.isDev && window.g_ck) {
+        headers["X-UserToken"] = window.g_ck;
+      }
+      
       const response = await fetch(`/api/now/table/${this.tableName}/${sysId}`, {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-          "X-UserToken": window.g_ck
-        },
+        headers,
         body: JSON.stringify(data),
       });
 
@@ -86,12 +102,17 @@ export class IncidentService {
   // Delete an incident
   async delete(sysId) {
     try {
+      const headers = {
+        "Accept": "application/json"
+      };
+      
+      if (!this.isDev && window.g_ck) {
+        headers["X-UserToken"] = window.g_ck;
+      }
+      
       const response = await fetch(`/api/now/table/${this.tableName}/${sysId}`, {
         method: "DELETE",
-        headers: {
-          "Accept": "application/json",
-          "X-UserToken": window.g_ck
-        },
+        headers
       });
 
       if (!response.ok) {
@@ -112,12 +133,17 @@ export class IncidentService {
       const searchParams = new URLSearchParams();
       searchParams.set('sysparm_display_value', 'all');
       
+      const headers = {
+        "Accept": "application/json"
+      };
+      
+      if (!this.isDev && window.g_ck) {
+        headers["X-UserToken"] = window.g_ck;
+      }
+      
       const response = await fetch(`/api/now/table/${this.tableName}/${sysId}?${searchParams.toString()}`, {
         method: "GET",
-        headers: {
-          "Accept": "application/json",
-          "X-UserToken": window.g_ck
-        },
+        headers
       });
 
       if (!response.ok) {
